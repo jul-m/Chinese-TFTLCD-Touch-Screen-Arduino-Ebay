@@ -11,7 +11,7 @@
 #elif defined(ESP8266)
   #include <pgmspace.h>
 #endif
-#include "TouchScreen.h"
+#include "TouchScreenTFT.h"
 
 // increase or decrease the touchscreen oversampling. This is a little different than you make think:
 // 1 is no oversampling, whatever data we get is immediately returned
@@ -195,6 +195,11 @@ TSPoint TouchScreen::getPoint(void) {
    if (! valid) {
      z = 0;
    }
+   
+   // --- jul-m Adds : Passage des broches XM et YP en output pour que le TFT pour refonctionner
+   pinMode(_xm, OUTPUT);
+   pinMode(_yp, OUTPUT);
+   // --- End jul-m Adds
 
    return TSPoint(x, y, z);
 }
